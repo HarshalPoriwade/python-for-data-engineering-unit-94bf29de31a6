@@ -14,6 +14,8 @@ MENU = [
     ("Garden Salad", 4.00),
     ("Apple Pie", 2.25),
 ]
+
+
 def menu_lines():
     """Build one text line per menu item, e.g. 'Tomato Soup              $3.50'."""
     lines = []
@@ -21,15 +23,25 @@ def menu_lines():
         lines.append(f"{name:<25}${price:.2f}")
     return lines
 
+
 def print_menu():
+    """Print the whole menu, one item per line."""
+    print("=== Cafeteria Menu ===")
+    for line in menu_lines():
+        print(line)
+
+
+def price_of(item_name):
     """Return the menu price of item_name, or 0.0 if it is not on the menu."""
     for name, price in MENU:
-        if name==item_name:
+        if name == item_name:
             return price
     return 0.0
 
+
 def find_special(day):
     """Return (item name, discount) for a day, or (None, 0.0) when there is none.
+
     The discount is always a float, so 0.20 means 20% off.
     """
     chosen = day.strip().lower()
@@ -46,9 +58,11 @@ def find_special(day):
     else:
         return (None, 0.0)
 
-def discounted_price(price,discount):
+
+def discounted_price(price, discount):
     """Return the price after the discount, rounded to whole cents."""
-    return round(price * (1.0 - discount),2)
+    return round(price * (1.0 - discount), 2)
+
 
 def main():
     print_menu()
@@ -65,6 +79,7 @@ def main():
 
     print("Discount value:", discount)
     print("Discount type:", type(discount))
+
 
 if __name__ == "__main__":
     main()
